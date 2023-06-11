@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="g_black">#33405f</color>
     <color name="g_loading">#fffafc</color>
+    <color name="purple_700">#FF3700B3</color>
 </resources>
