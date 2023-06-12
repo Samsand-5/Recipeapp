@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.recipeapp.R
+import com.example.recipeapp.databinding.FragmentHomeBinding
 import com.example.recipeapp.pojo.Meal
 import com.example.recipeapp.pojo.MealList
 import com.example.recipeapp.retrofit.RetrofitInstance
@@ -18,7 +20,7 @@ import retrofit2.Retrofit
 
 class HomeFragment : Fragment() {
 
-
+    private lateinit var binding: FragmentHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,18 +29,20 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home,container,false)
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         RetrofitInstance.api.getRandomMeal().enqueue(object : Callback<MealList>{
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
                 if(response.body()!=null){
                     val randomMeal: Meal = response.body()!!.meals[0]
-                    Log.d("TEST","meal id${randomMeal.idMeal} name${randomMeal.strMeal}" )
+                    Glide.with(this@HomeFragment)
+                        .load(randomMeal.strMealThumb)
+                        .into(binding.imgRandomMeal)
                 } else {
                 }
             }
