@@ -1,6 +1,7 @@
 package com.example.recipeapp.viewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.recipeapp.pojo.Meal
@@ -17,7 +18,7 @@ class HomeViewModel():ViewModel() {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
                 if(response.body()!=null){
                     val randomMeal: Meal = response.body()!!.meals[0]
-
+                    randomMealLiveData.value = randomMeal
                 } else {
                     return
                 }
@@ -27,5 +28,10 @@ class HomeViewModel():ViewModel() {
                 Log.d("HomeFragment",t.message.toString())
             }
         })
+
+
+    }
+    fun observeRandomMealLiveData():LiveData<Meal>{
+        return randomMealLiveData
     }
 }
