@@ -10,6 +10,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_230sdp"
+        android:background="@color/purple_200"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -43,13 +44,103 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_favorite"
         app:backgroundTint="@color/accent"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="10dp"
         android:baselineAlignBottom="false"
         android:clickable="true"
         app:fabSize="normal"
         app:tint="@color/white"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|end"
-        android:focusable="true" />
+        android:focusable="true"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="45dp">
+
+            <LinearLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category : "
+                    android:textStyle="bold"
+                    android:textColor="@color/g_black"
+                    android:drawableLeft="@drawable/ic_categories"
+                    android:drawableTint="@color/g_black"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Area : "
+                    android:textStyle="bold"
+                    android:textColor="@color/g_black"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawableTint="@color/g_black"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="-Instructions:"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:includeFontPadding="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_layout" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@id/tv_instructions"
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/img_youtube"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="bottom|center"
+        android:src="@drawable/ic_video"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|end"
+        android:visibility="gone"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
