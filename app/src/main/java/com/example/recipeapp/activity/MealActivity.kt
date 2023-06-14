@@ -3,22 +3,22 @@ package com.example.recipeapp.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.example.recipeapp.R
-import com.example.recipeapp.databinding.ActivityMainBinding
+import com.example.recipeapp.databinding.ActivityMealBinding
 import com.example.recipeapp.fragments.HomeFragment
+
 
 class MealActivity : AppCompatActivity() {
     private lateinit var mealId:String
     private lateinit var mealName:String
     private lateinit var mealThumb:String
-
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMealBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMealBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         getMealInformationFromIntent()
+
         setInformationInViews()
     }
 
