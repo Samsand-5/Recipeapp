@@ -3,6 +3,7 @@ package com.example.recipeapp.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.example.recipeapp.R
 import com.example.recipeapp.databinding.ActivityMealBinding
 import com.example.recipeapp.fragments.HomeFragment
 
@@ -28,6 +29,8 @@ class MealActivity : AppCompatActivity() {
             .into(binding.imgMealDetail)
 
         binding.collapsingToolbar.title = mealName
+        binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
+        binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.white))
     }
 
     private fun getMealInformationFromIntent() {
