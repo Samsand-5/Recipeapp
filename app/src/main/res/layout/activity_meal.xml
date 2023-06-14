@@ -40,6 +40,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_to_fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_favorite"
@@ -77,6 +78,7 @@
                 app:layout_constraintStart_toEndOf="parent">
 
                 <TextView
+                    android:id="@+id/tv_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category : "
@@ -87,6 +89,7 @@
                     android:layout_weight="1"/>
 
                 <TextView
+                    android:id="@+id/tv_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Area : "
@@ -115,6 +118,7 @@
                 app:layout_constraintTop_toBottomOf="@id/linear_layout" />
 
             <TextView
+                android:id="@+id/tu_instructions_steps"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_2sdp"
