@@ -5,13 +5,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.recipeapp.R
 import com.example.recipeapp.databinding.ActivityMealBinding
 import com.example.recipeapp.fragments.HomeFragment
-import com.example.recipeapp.pojo.Meal
 import com.example.recipeapp.viewModel.MealViewModel
 
 
@@ -47,17 +46,15 @@ class MealActivity : AppCompatActivity() {
     }
 
     private fun observeMealDetailsLiveData() {
-        mealMvvm.observeRandomMealLiveData().observe(this, object : Observer<Meal> {
-            override fun onChanged(t: Meal?) {
-                onResponseCase()
-                val meal = t
-                binding.tvCategory.text = "Category : ${meal!!.strCategory}"
-                binding.tvArea.text = "Area : ${meal!!.strArea}"
-                binding.tvInstructionsSteps.text = meal.strInstructions
+        mealMvvm.observeRandomMealLiveData().observe(this
+        ) { t ->
+            onResponseCase()
+            binding.tvCategory.text = "Category : ${t!!.strCategory}"
+            binding.tvArea.text = "Area : ${t!!.strArea}"
+            binding.tvInstructionsSteps.text = t.strInstructions
 
-                youTubeLink = meal.strYoutube
-            }
-        })
+            youTubeLink = t.strYoutube
+        }
     }
 
     private fun setInformationInViews() {
@@ -66,8 +63,8 @@ class MealActivity : AppCompatActivity() {
             .into(binding.imgMealDetail)
 
         binding.collapsingToolbar.title = mealName
-        binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
-        binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.white))
+        binding.collapsingToolbar.setCollapsedTitleTextColor(ResourcesCompat.getColor(resources,R.color.white,null))
+        binding.collapsingToolbar.setExpandedTitleColor(ResourcesCompat.getColor(resources,R.color.white,null))
     }
 
     private fun getMealInformationFromIntent() {

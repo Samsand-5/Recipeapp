@@ -2,10 +2,12 @@ package com.example.recipeapp.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -56,11 +58,21 @@ class HomeFragment : Fragment() {
 
         homeMvvm.getPopularItems()
         observePopularItemsLiveData()
-        onpopularItemClick()
+        onPopularItemClick()
 
+        homeMvvm.getCategories()
+        observeCategoriesLiveData()
     }
 
-    private fun onpopularItemClick() {
+    private fun observeCategoriesLiveData() {
+        homeMvvm.observeCategoriesLiveData().observe(viewLifecycleOwner, Observer {categories->
+            categories.forEach{category->
+                Log.d("test",category.strCategory)
+            }
+        })
+    }
+
+    private fun onPopularItemClick() {
         popularItemsAdapter.onItemClick = {meal ->
             val intent = Intent(activity,MealActivity::class.java)
             intent.putExtra(MEAL_ID,meal.idMeal)
