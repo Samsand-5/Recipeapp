@@ -2,29 +2,19 @@ package com.example.recipeapp.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.recipeapp.R
 import com.example.recipeapp.activity.MealActivity
 import com.example.recipeapp.adapters.MostPopularAdapter
 import com.example.recipeapp.databinding.FragmentHomeBinding
-import com.example.recipeapp.pojo.CategoryList
-import com.example.recipeapp.pojo.CategoryMeals
+import com.example.recipeapp.pojo.MealsBycategory
 import com.example.recipeapp.pojo.Meal
-import com.example.recipeapp.pojo.MealList
-import com.example.recipeapp.retrofit.RetrofitInstance
 import com.example.recipeapp.viewModel.HomeViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 
 
 class HomeFragment : Fragment() {
@@ -90,7 +80,7 @@ class HomeFragment : Fragment() {
     private fun observePopularItemsLiveData() {
         homeMvvm.observePopularItemsLiveData().observe(viewLifecycleOwner
         ) {mealList->
-            popularItemsAdapter.setMeals(mealsList = mealList as ArrayList<CategoryMeals> )
+            popularItemsAdapter.setMeals(mealsList = mealList as ArrayList<MealsBycategory> )
         }
     }
 
