@@ -62,6 +62,13 @@ class HomeFragment : Fragment() {
 
         homeMvvm.getCategories()
         observeCategoriesLiveData()
+        prepareCategoriesRecyclerView()
+    }
+
+    private fun prepareCategoriesRecyclerView() {
+        binding.recViewCategories.apply {
+
+        }
     }
 
     private fun observeCategoriesLiveData() {
