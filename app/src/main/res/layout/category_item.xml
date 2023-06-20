@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:scaleType="fitCenter"
-        android:src="@color/accent"/>
+        android:src="@color/purple_200"/>
 
     <TextView
         android:id="@+id/tv_category_name"
