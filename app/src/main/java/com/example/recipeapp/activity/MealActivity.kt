@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -12,7 +13,9 @@ import com.example.recipeapp.R
 import com.example.recipeapp.activity.db.MealDatabase
 import com.example.recipeapp.databinding.ActivityMealBinding
 import com.example.recipeapp.fragments.HomeFragment
+import com.example.recipeapp.pojo.Meal
 import com.example.recipeapp.viewModel.MealViewModel
+import com.example.recipeapp.viewModel.MealViewModelFactory
 
 
 class MealActivity : AppCompatActivity() {
@@ -28,7 +31,8 @@ class MealActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val mealDatabase = MealDatabase.getInstance(this)
-       // mealMvvm = ViewModelProviders.of(this)[MealViewModel::class.java]
+        val viewModelFactory = MealViewModelFactory(mealDatabase)
+        mealMvvm = ViewModelProviders.of(this,viewModelFactory)[MealViewModel::class.java]
 
         getMealInformationFromIntent()
 
@@ -38,6 +42,17 @@ class MealActivity : AppCompatActivity() {
         observeMealDetailsLiveData()
 
         onYouTubeImageClick()
+        onFavoriteClick()
+    }
+
+    private fun onFavoriteClick() {
+        binding.btnAddToFav.setOnClickListener {
+            mealToSave?.let {
+                mealMvvm.insertMeal(it)
+                mealMvvm.updateMeal(it)
+                Toast.makeText(this,"Meal Saved",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun onYouTubeImageClick() {
@@ -47,10 +62,12 @@ class MealActivity : AppCompatActivity() {
         }
     }
 
+    private var mealToSave: Meal?=null
     private fun observeMealDetailsLiveData() {
         mealMvvm.observeRandomMealLiveData().observe(this
         ) { t ->
             onResponseCase()
+            mealToSave = t
             binding.tvCategory.text = "Category : ${t!!.strCategory}"
             binding.tvArea.text = "Area : ${t!!.strArea}"
             binding.tvInstructionsSteps.text = t.strInstructions
