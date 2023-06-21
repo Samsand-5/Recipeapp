@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.recipeapp.R
+import com.example.recipeapp.activity.db.MealDatabase
 import com.example.recipeapp.databinding.ActivityMealBinding
 import com.example.recipeapp.fragments.HomeFragment
 import com.example.recipeapp.viewModel.MealViewModel
@@ -26,7 +27,8 @@ class MealActivity : AppCompatActivity() {
         binding = ActivityMealBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mealMvvm = ViewModelProviders.of(this)[MealViewModel::class.java]
+        val mealDatabase = MealDatabase.getInstance(this)
+       // mealMvvm = ViewModelProviders.of(this)[MealViewModel::class.java]
 
         getMealInformationFromIntent()
 
