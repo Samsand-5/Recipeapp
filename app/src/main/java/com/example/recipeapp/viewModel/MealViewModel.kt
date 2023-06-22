@@ -15,7 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MealViewModel(
-    val mealDatabase: MealDatabase
+    private val mealDatabase: MealDatabase
 ): ViewModel() {
     private var mealDetailsLiveData = MutableLiveData<Meal>()
 
@@ -38,14 +38,10 @@ class MealViewModel(
     }
     fun insertMeal(meal: Meal){
         viewModelScope.launch {
-            mealDatabase.mealDao().insertMeal(meal)
+            mealDatabase.mealDao().upsert(meal)
         }
     }
-    fun updateMeal(meal: Meal){
-        viewModelScope.launch {
-            mealDatabase.mealDao().updateFavorite(meal)
-        }
-    }
+
     fun deleteMeal(meal: Meal){
         viewModelScope.launch {
             mealDatabase.mealDao().deleteMeal(meal)

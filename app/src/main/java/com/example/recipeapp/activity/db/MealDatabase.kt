@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.recipeapp.activity.MealActivity
 import com.example.recipeapp.pojo.Meal
 
-@Database(entities = [Meal::class], version = 1, exportSchema = false)
+@Database(entities = [Meal::class], version = 6)
 @TypeConverters(MealTypeConverter::class)
 abstract class MealDatabase : RoomDatabase() {
     abstract fun mealDao():MealDao
@@ -29,5 +29,6 @@ abstract class MealDatabase : RoomDatabase() {
             return INSTANCE as MealDatabase
         }
     }
+
 
 }

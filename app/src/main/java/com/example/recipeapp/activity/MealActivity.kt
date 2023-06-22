@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.recipeapp.R
@@ -32,7 +34,7 @@ class MealActivity : AppCompatActivity() {
 
         val mealDatabase = MealDatabase.getInstance(this)
         val viewModelFactory = MealViewModelFactory(mealDatabase)
-        mealMvvm = ViewModelProviders.of(this,viewModelFactory)[MealViewModel::class.java]
+        mealMvvm = ViewModelProvider(this,viewModelFactory)[MealViewModel::class.java]
 
         getMealInformationFromIntent()
 
@@ -49,7 +51,6 @@ class MealActivity : AppCompatActivity() {
         binding.btnAddToFav.setOnClickListener {
             mealToSave?.let {
                 mealMvvm.insertMeal(it)
-                mealMvvm.updateMeal(it)
                 Toast.makeText(this,"Meal Saved",Toast.LENGTH_SHORT).show()
             }
         }
@@ -63,17 +64,20 @@ class MealActivity : AppCompatActivity() {
     }
 
     private var mealToSave: Meal?=null
-    private fun observeMealDetailsLiveData() {
-        mealMvvm.observeRandomMealLiveData().observe(this
-        ) { t ->
-            onResponseCase()
-            mealToSave = t
-            binding.tvCategory.text = "Category : ${t!!.strCategory}"
-            binding.tvArea.text = "Area : ${t!!.strArea}"
-            binding.tvInstructionsSteps.text = t.strInstructions
+    private fun observeMealDetailsLiveData(){
+        mealMvvm.observeRandomMealLiveData().observe(this,object : Observer<Meal>{
+            override fun onChanged(t: Meal?) {
+                onResponseCase()
+                val meal = t
+                mealToSave = meal
 
-            youTubeLink = t.strYoutube
-        }
+                binding.tvCategory.text = "Category : ${t!!.strCategory}"
+                binding.tvArea.text = "Area : ${t!!.strArea}"
+                binding.tvInstructionsSteps.text = t.strInstructions
+
+                youTubeLink = t.strYoutube
+            }
+        })
     }
 
     private fun setInformationInViews() {
