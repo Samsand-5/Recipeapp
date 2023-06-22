@@ -1,6 +1,7 @@
 package com.example.recipeapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,5 +30,14 @@ private lateinit var viewModel: HomeViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeFavorites()
+    }
+
+    private fun observeFavorites() {
+        viewModel.observeFavoriteMealsLiveData().observe(requireActivity(),{meals ->
+            meals.forEach{
+                Log.d("test", it.idMeal.toString())
+            }
+        })
     }
 }
