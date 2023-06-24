@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.recipeapp.R
-import com.example.recipeapp.activity.db.MealDatabase
+import com.example.recipeapp.db.MealDatabase
 import com.example.recipeapp.viewModel.HomeViewModel
 import com.example.recipeapp.viewModel.HomeViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.recipeapp.activity.db.MealDatabase
+import com.example.recipeapp.db.MealDatabase
 import com.example.recipeapp.pojo.*
 import com.example.recipeapp.retrofit.RetrofitInstance
 import retrofit2.Call

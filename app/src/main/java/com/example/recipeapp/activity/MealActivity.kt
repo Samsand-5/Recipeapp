@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.recipeapp.R
-import com.example.recipeapp.activity.db.MealDatabase
+import com.example.recipeapp.db.MealDatabase
 import com.example.recipeapp.databinding.ActivityMealBinding
 import com.example.recipeapp.fragments.HomeFragment
 import com.example.recipeapp.pojo.Meal

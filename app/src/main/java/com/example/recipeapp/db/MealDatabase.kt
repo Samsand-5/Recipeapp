@@ -1,4 +1,4 @@
-package com.example.recipeapp.activity.db
+package com.example.recipeapp.db
 
 import android.content.Context
 import androidx.room.Database
@@ -11,7 +11,7 @@ import com.example.recipeapp.pojo.Meal
 @Database(entities = [Meal::class], version = 6)
 @TypeConverters(MealTypeConverter::class)
 abstract class MealDatabase : RoomDatabase() {
-    abstract fun mealDao():MealDao
+    abstract fun mealDao(): MealDao
 
     companion object {
         @Volatile
