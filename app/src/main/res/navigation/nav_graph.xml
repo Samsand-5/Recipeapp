@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/catagoriesFragment"
-        android:name="com.example.recipeapp.fragments.CatagoriesFragment"
+        android:name="com.example.recipeapp.fragments.CategoriesFragment"
         android:label="fragment_catagories"
-        tools:layout="@layout/fragment_catagories" />
+        tools:layout="@layout/fragment_categories" />
 </navigation>
