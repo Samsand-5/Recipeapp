@@ -7,6 +7,7 @@ import com.example.recipeapp.db.MealDatabase
 class MealViewModelFactory(
     private val mealDatabase: MealDatabase
 ):ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MealViewModel(mealDatabase) as T
     }

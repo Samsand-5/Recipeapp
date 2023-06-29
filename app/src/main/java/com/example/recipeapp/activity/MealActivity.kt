@@ -2,18 +2,17 @@ package com.example.recipeapp.activity
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.recipeapp.R
-import com.example.recipeapp.db.MealDatabase
 import com.example.recipeapp.databinding.ActivityMealBinding
+import com.example.recipeapp.db.MealDatabase
 import com.example.recipeapp.fragments.HomeFragment
 import com.example.recipeapp.pojo.Meal
 import com.example.recipeapp.viewModel.MealViewModel
@@ -66,16 +65,16 @@ class MealActivity : AppCompatActivity() {
     private var mealToSave: Meal?=null
     private fun observeMealDetailsLiveData(){
         mealMvvm.observeRandomMealLiveData().observe(this,object : Observer<Meal>{
-            override fun onChanged(t: Meal?) {
+            override fun onChanged(value: Meal) {
                 onResponseCase()
-                val meal = t
+                val meal = value
                 mealToSave = meal
 
-                binding.tvCategory.text = "Category : ${t!!.strCategory}"
-                binding.tvArea.text = "Area : ${t!!.strArea}"
-                binding.tvInstructionsSteps.text = t.strInstructions
+                binding.tvCategory.text = "Category : ${value!!.strCategory}"
+                binding.tvArea.text = "Area : ${value!!.strArea}"
+                binding.tvInstructionsSteps.text = value.strInstructions
 
-                youTubeLink = t.strYoutube
+                youTubeLink = value.strYoutube
             }
         })
     }

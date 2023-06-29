@@ -26,7 +26,7 @@ abstract class MealDatabase : RoomDatabase() {
                     "meal_db"
                 ).fallbackToDestructiveMigration()
                     .build()
-            return INSTANCE as MealDatabase
+            return INSTANCE as  MealDatabase
         }
     }
 
